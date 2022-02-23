@@ -1,0 +1,88 @@
+﻿@model QLBGD.Models.SanPham
+@{
+    ViewBag.Title = "Thông tin sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    string gtinh = "";
+}
+<style>
+    th, td {
+        border-bottom: 2px solid #a9a9a9;
+        height: 50px;
+    }
+</style>
+<h2>Thông tin chi tiết</h2>
+
+<div>
+	<hr />
+	<div class="row">
+		<div class="col-md-2">
+			<img width="200px" height="200px" style="border-radius:50%;margin-left:30px;margin-top:20px;" src="~/Images/products/@Html.DisplayFor(model => model.AnhSP)" />
+		</div>
+		<div class="col-md-1"></div>
+        <div class="col-md-9">
+            <br />
+            <h3 style="font-weight: bold;font-size:25px;">@Html.DisplayFor(model => model.TenSanPham)</h3>
+            <table>
+
+                <tr>
+                    <th>Tình trạng: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td>@Html.DisplayFor(model => model.TinhTrang)</td>
+                </tr>
+
+
+
+                <tr>
+                    <th>Loại sản phẩm: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td>@Html.DisplayFor(model => model.LoaiSanPham.TenLoaiSanPham)</td>
+                </tr>
+
+                <tr>
+                    <th>Nhãn hiệu: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td>@Html.DisplayFor(model => model.NhanHieu.TenNhanHieu)</td>
+                </tr>
+                <tr>
+                    <th>Màu sắc: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td>@Html.DisplayFor(model => model.MauSac)</td>
+                </tr>
+                <tr>
+                    <th>Kích thước: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td>@Html.DisplayFor(model => model.KichThuoc)</td>
+                </tr>
+                <tr>
+                    <th>Phù hợp với: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td style="width: 500px;">
+                        @{if (Model.GioiTinh == true)
+                            { gtinh = "Nam"; }
+                            else
+                            { gtinh = "Nữ"; }
+                        }
+                        @gtinh
+                    </td>
+                </tr>
+                <tr>
+                    <th>Đơn giá: </th>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td><div class="text-danger font-weight-bold">@String.Format("{0:0,0}", Model.DonGia) VND</div></td>
+                </tr>
+                <tr>
+                    <td style="border: none;">
+                        &nbsp;
+                    </td>
+                </tr>
+
+
+            </table>
+            <p style="padding-top: 30px">
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaSanPham }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = Model.MaSanPham }) |
+                @Html.ActionLink("Quay lại", "Index")
+            </p>
+        </div>
+	</div>
+</div>

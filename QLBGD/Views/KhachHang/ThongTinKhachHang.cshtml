@@ -1,0 +1,71 @@
+﻿@model QLBGD.Models.KhachHang
+
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.Title = "Thông tin khách hàng";
+}
+<style>
+    th, td {
+        width: 150px;
+        height: 40px;
+        border-bottom: 1px solid #a9a9a9;
+    }
+</style>
+<h2>Thông tin khách hàng</h2>
+
+<div class="row">
+    <hr />
+    <div class="col-md-2">
+        <img width="250" height="250" style="border-radius: 10%; margin-left: 30px; margin-top: 20px; border: 1px solid #a9a9a9" src="https://thinkingschool.vn/wp-content/uploads/avatars/753/753-bpfull.jpg" />
+    </div>
+
+    <div class="col-md-10">
+        <table>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Ho):</th>
+                <td style="width:200px;">@Html.DisplayFor(model => model.Ho)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Ten):</th>
+                <td>@Html.DisplayFor(model => model.Ten)</td>
+
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.GioiTinh):</th>
+                <td>
+                    @{ var gtinh = "";
+                        if (Model.GioiTinh == true)
+                        { gtinh = "Nam"; }
+                        else
+                        { gtinh = "Nữ"; }
+                    }
+                    @gtinh
+                </td>
+
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Email):</th>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.SDT):</th>
+                <td>@Html.DisplayFor(model => model.SDT)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TinhOrTP):</th>
+                <td>@Html.DisplayFor(model => model.TinhOrTP)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DiaChi):</th>
+                <td>@Html.DisplayFor(model => model.DiaChi)</td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+<p class="ml-5 mt-2">
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaKhachHang })
+</p>
+<h3>Lịch sử mua hàng</h3>
+
+@Html.Partial("_DonDatHangPartial", Model.DonDatHangs)

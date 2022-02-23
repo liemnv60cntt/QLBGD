@@ -1,0 +1,68 @@
+﻿@using QLBGD.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    int i = 0;
+}
+<style>
+    .backBT {
+        color: white;
+    }
+</style>
+<h3>Sửa giỏ hàng</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>STT</td>
+
+            <td scope="col">Ảnh sản phẩm</td>
+
+            <td scope="col">Mã sản phẩm</td>
+
+            <td scope="col">Tên sản phẩm</td>
+
+            <td scope="col">Đơn giá</td>
+
+            <td scope="col">Số lượng</td>
+
+            <td scope="col">Thành tiền</td>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                i++;
+            }
+            <td scope="row">@i</td>
+
+            <td><img src="@Url.Content("~/Images/products/" + item.iAnhSanPham)" width="50px" height="50px"</td>
+
+            <td>@item.iMaSanPham</td>
+
+            <td>@item.iTenSanPham</td>
+
+            <td>@String.Format("{0:0,0}", item.iDonGia) VND</td>
+
+            @* Chỉnh sửa giỏ hàng gọi về action CapNhatGioHang *@
+            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @cMaSanPham = item.iMaSanPham }))
+            {
+                <td>@Html.TextBox("txtSoLuong", @item.iSoLuong)</td>
+                <td>@String.Format("{0:0,0}", item.iThanhTien) VND</td>
+                <td colspan="6">
+                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    <br />
+                    @* Xóa sản phẩm giỏ về action XoaGioHang *@
+                    <div class="btn btn-danger" style="margin-top: 2px; width:90px;">
+                        <a href="@Url.Action("XoaGioHang", "GioHang", new { @cMaSanPham = item.iMaSanPham, @class = "backBT" })" style="text-decoration: none;color:whitesmoke;">
+                            Xóa
+                        </a>
+                    </div>
+                </td>
+
+            }
+
+        </tr>
+    }
+</table>

@@ -1,0 +1,86 @@
+﻿@model QLBGD.Models.KhachHang
+
+@{
+    ViewBag.Title = "Xóa khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="color: orangered">Bạn có chắc muốn xóa khách hàng này?</h3>
+
+<div class="row">
+    <hr />
+    <div class="col-md-11">
+        <dl class="dl-horizontal">
+            <dt style="height:40px;font-size:30px;">
+                @Html.DisplayFor(model => model.Ho) @Html.DisplayFor(model => model.Ten)
+            </dt>
+
+        
+            <dt>
+                @Html.DisplayNameFor(model => model.GioiTinh)
+            </dt>
+
+            <dd>
+                @{ var gtinh = "";
+                    if (Model.GioiTinh == true)
+                    { gtinh = "Nam"; }
+                    else
+                    { gtinh = "Nữ"; }
+                }
+                @gtinh
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SDT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MatKhau)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MatKhau)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TinhOrTP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TinhOrTP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DiaChi)
+            </dd>
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
+        }
+    </div>
+
+   
+</div>
